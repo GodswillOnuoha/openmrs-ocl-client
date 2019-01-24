@@ -294,7 +294,9 @@ export const fetchExistingConcept = conceptUrl => async (dispatch) => {
   notify.show('Retrieving concept details, please wait...', 'warning', 2000);
   const url = conceptUrl;
   try {
+    const mappingsResponse = await instance.get(`${url}mappings/`);
     const response = await instance.get(url);
+    response.data.mappings = mappingsResponse.data;
     dispatch(isSuccess(response.data, FETCH_EXISTING_CONCEPT));
   } catch (error) {
     notify.show('Could not retrieve concept details', 'error', 3000);

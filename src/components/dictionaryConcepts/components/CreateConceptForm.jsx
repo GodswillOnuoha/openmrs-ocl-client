@@ -5,12 +5,14 @@ import CreateConceptTable from './CreateConceptTable';
 import DescriptionTable from './DescriptionTable';
 import AnswersTable from './AnswersTable';
 import CreateMapping from './CreateMapping';
+import ExistingMappings from './ExistingMappings';
 import { classes } from './helperFunction';
 
 const CreateConceptForm = (props) => {
   const {
     concept, handleAsyncSelectChange, queryAnswers, selectedAnswers, handleAnswerChange,
     mappings, addMappingRow, updateEventListener, removeMappingRow, updateAsyncSelectValue,
+    existingConcept,
   } = props;
   return (
     <form className="form-wrapper" onSubmit={props.handleSubmit} id="createConceptForm">
@@ -188,6 +190,12 @@ const CreateConceptForm = (props) => {
         <div className="concept-table ">
           <fieldset>
             <legend>Related Concepts</legend>
+            {
+            existingConcept.mappings && <ExistingMappings
+              mappings={existingConcept.mappings}
+              mappingLimit="10"
+            />
+            }
             {mappings.map((mapping, i) => (
               <CreateMapping
                 source={mapping.source}
@@ -246,6 +254,7 @@ CreateConceptForm.propTypes = {
   updateEventListener: PropTypes.func.isRequired,
   removeMappingRow: PropTypes.func.isRequired,
   updateAsyncSelectValue: PropTypes.func.isRequired,
+  existingMappings: PropTypes.array,
 };
 
 CreateConceptForm.defaultProps = {
@@ -257,6 +266,7 @@ CreateConceptForm.defaultProps = {
   queryAnswers: () => {},
   selectedAnswers: [],
   mappings: [],
+  existingMappings: [],
 };
 
 export default CreateConceptForm;

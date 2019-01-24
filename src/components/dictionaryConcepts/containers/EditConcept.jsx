@@ -59,6 +59,14 @@ export class EditConcept extends Component {
       names: [],
       descriptions: [],
       isEditConcept: true,
+      mappings: [{
+        map_type: 'Same as',
+        source: null,
+        to_concept_code: null,
+        to_concept_name: null,
+        id: 1,
+        to_source_url: null,
+      }],
     };
     this.conceptUrl = '';
 
@@ -221,7 +229,7 @@ Concept
               && (
               <CreateConceptForm
                 handleNewName={this.handleNewName}
-                nameRows={this.props.newName}
+                nameRows="HeHe" // this.props.newName}
                 removeRow={this.removeNewName}
                 description={this.props.description}
                 editable={this.state.notEditable}
@@ -241,6 +249,7 @@ Concept
                 pathName={this.props.match.params}
                 existingConcept={existingConcept}
                 isEditConcept={this.state.isEditConcept}
+                existingMappings={this.state.mappings}
                 answer={this.props.answer}
                 disableButton={loading}
               />
