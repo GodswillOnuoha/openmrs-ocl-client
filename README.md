@@ -36,11 +36,11 @@
 ```
 ```
 1. For MacOs or Linux:
-"start": "PORT=3006 react-scripts start"
+"start": "PORT=3006 npm run build:css && react-scripts start"
 ```
 ```
 2. For Windows:
-"start": "set PORT=3006 && react-scripts start"
+"start": "set PORT=3006 && npm run build:css && react-scripts start"
 ```
 ```
 For instances where port 3000 is being used it will prompt you to reply with letter Y to change the port automatically.
